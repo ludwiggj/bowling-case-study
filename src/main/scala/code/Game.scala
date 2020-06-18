@@ -106,13 +106,11 @@ final case class Game(frames: List[Frame], finalFrame: FinalFrame) {
 }
 object Game {
   final case class State(
-      frameNumber: Int,
       score: Int,
       pending: Option[Pending]
   ) {
     def next(additionalScore: Int, newPending: Option[Pending]): State =
       this.copy(
-        frameNumber = frameNumber + 1,
         score = score + additionalScore,
         pending = newPending
       )
@@ -122,5 +120,5 @@ object Game {
   case object StrikeAndStrike extends Pending
   case object Spare extends Pending
 
-  val initialState = State(0, 0, None)
+  val initialState = State(0, None)
 }
